@@ -19,5 +19,7 @@ namespace lunch.Models
 
         [JsonProperty(PropertyName = "address")]
         public string Address { get; set; }
+
+        public bool HasDailyOfferToday => true;
     }
 }
