@@ -19,11 +19,11 @@ namespace lunch
         public async void LoadData()
         {
             //DocumentDB supports strongly typed POCO objects and also dynamic objects
-            Restaurant testRestaurant = JsonConvert.DeserializeObject<Restaurant>(File.ReadAllText("./App_Data/test.json"));
+            //Restaurant testRestaurant = JsonConvert.DeserializeObject<Restaurant>(File.ReadAllText("./App_Data/test.json"));
             //dynamic dynamicObject = JsonConvert.DeserializeObject(File.ReadAllText(@".\App_Data\test2.json"));
 
             //persist the documents in DocumentDB
-            await DocumentDBRepository<Restaurant>.CreateItemAsync(testRestaurant);
+            //await DocumentDBRepository<Restaurant>.CreateItemAsync(testRestaurant);
         }
     }
 }

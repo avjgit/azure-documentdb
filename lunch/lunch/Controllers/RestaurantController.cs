@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace lunch.Controllers
 {
@@ -36,6 +38,28 @@ namespace lunch.Controllers
             }
 
             return View(item);
+        }
+
+        [HttpPost]
+        [ActionName("UploadMenu")]        
+        public async Task<ActionResult> Upload(HttpPostedFileBase file)
+        {
+            try
+            {
+                if (file.ContentLength > 0)
+                {
+                    string fileContent = new StreamReader(file.InputStream).ReadToEnd();
+                    Restaurant restaurant = JsonConvert.DeserializeObject<Restaurant>(fileContent);
+                    await DocumentDBRepository<Restaurant>.CreateItemAsync(restaurant);
+                }
+                ViewBag.Message = "Upload successful";
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = "Upload failed";
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]
