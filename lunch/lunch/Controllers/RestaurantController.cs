@@ -68,5 +68,40 @@ namespace lunch.Controllers
 
             return View(item);
         }
+
+
+        [ActionName("Details")]
+        public async Task<ActionResult> DetailsAsync(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Restaurant item = await DocumentDBRepository<Restaurant>.GetItemAsync(id);
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(item);
+        }
+
+        [ActionName("Delete")]
+        public async Task<ActionResult> DeleteAsync(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Restaurant item = await DocumentDBRepository<Restaurant>.GetItemAsync(id);
+            if (item == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(item);
+        }
     }
 }

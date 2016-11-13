@@ -1,0 +1,18 @@
+﻿@model lunch.Models.Restaurant
+
+@{
+    ViewBag.Title = "Restorāns";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Html.DisplayFor(model => model.Name)</h2>
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Description)</h4>
+    <hr />
+    @Html.DisplayFor(model => model.Address)
+</div>
+<p>
+    @Html.ActionLink("Rediģēt", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Atpakaļ", "Index")
+</p>

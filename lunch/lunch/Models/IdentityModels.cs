@@ -29,5 +29,7 @@ namespace lunch.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<lunch.Models.Restaurant> Restaurants { get; set; }
     }
 }
