@@ -48,6 +48,22 @@
     </div>
 }
 
+@using (Html.BeginForm("UploadMenu", "Lunches", FormMethod.Post,
+                                        new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <fieldset>
+        <legend>Augšupielādēt failu:</legend>
+        <div class="editor-field">
+            @Html.TextBox("file", "", new { type = "file" })
+        </div>
+        <div class="editor-field">
+            <input type="submit" value="Augšuielādēt" />
+        </div>
+    </fieldset>
+}
+
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

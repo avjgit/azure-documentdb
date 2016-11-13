@@ -7,6 +7,9 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using lunch.Models;
+using System.IO;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace lunch.Controllers
 {
@@ -33,6 +36,29 @@ namespace lunch.Controllers
                 return HttpNotFound();
             }
             return View(lunch);
+        }
+
+
+        [HttpPost]
+        [ActionName("UploadMenu")]
+        public async Task<ActionResult> Upload(HttpPostedFileBase file)
+        {
+            try
+            {
+                if (file.ContentLength > 0)
+                {
+                    string fileContent = new StreamReader(file.InputStream).ReadToEnd();
+                    Lunch lunch = JsonConvert.DeserializeObject<Lunch>(fileContent);
+                    await DocumentDBRepository<Lunch>.CreateItemAsync(lunch);
+                }
+                ViewBag.Message = "Upload successful";
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Message = "Upload failed: " + ex;
+                return RedirectToAction("Index");
+            }
         }
 
         // GET: Lunches/Create

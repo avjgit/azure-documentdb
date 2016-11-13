@@ -20,7 +20,7 @@ namespace lunch.Models
         [Display(Name = "Pamatēdieni")]
         public List<Dish> MainDishes { get; set; }
 
-        [JsonProperty(PropertyName = "deserts")]
+        [JsonProperty(PropertyName = "desserts")]
         [Display(Name = "Deserti")]
         public List<Dish> Deserts { get; set; }
 
