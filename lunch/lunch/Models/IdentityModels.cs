@@ -33,5 +33,9 @@ namespace lunch.Models
         public System.Data.Entity.DbSet<lunch.Models.Restaurant> Restaurants { get; set; }
 
         public System.Data.Entity.DbSet<lunch.Models.Lunch> Lunches { get; set; }
+
+        public System.Data.Entity.DbSet<lunch.Models.Dish> Dishes { get; set; }
+
+        public System.Data.Entity.DbSet<lunch.Models.Menu> Menus { get; set; }
     }
 }
