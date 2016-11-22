@@ -15,6 +15,8 @@ namespace lunch.Models
 
         [JsonProperty(PropertyName = "date")]
         [Display(Name = "Datums")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}",
+               ApplyFormatInEditMode = true)]
         public DateTime Date { get; set; }
 
         [JsonProperty(PropertyName = "menu")]

@@ -17,10 +17,12 @@ namespace lunch.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Lunches
-        public ActionResult Index()
+
+        [ActionName("Index")]
+        public async Task<ActionResult> IndexAsync()
         {
-            return View(db.Lunches.ToList());
+            var items = await DocumentDBRepository<Lunch>.GetItemsAsync(x => x.Price > 0);
+            return View(items);
         }
 
         // GET: Lunches/Details/5

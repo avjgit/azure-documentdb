@@ -1,19 +1,35 @@
 ﻿@model IEnumerable<lunch.Models.Lunch>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Visi dienas piedāvājumi";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Visi dienas piedāvājumi</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Pievienot", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.Restaurant.Name)*@
+            Restorāns
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Menu.FirstPlates)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Menu.MainDishes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Menu.Deserts)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Menu.Drinks)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Price)
@@ -27,13 +43,48 @@
             @Html.DisplayFor(modelItem => item.Date)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Price)
+            @Html.DisplayFor(modelItem => item.Restaurant.Name)
         </td>
         <td>
+            @foreach (var firstPlate in item.Menu.FirstPlates)
+            {
+                <div>
+                    @Html.DisplayFor(x => firstPlate.Name)
+                </div>
+            }
+        </td>
+        <td>
+            @foreach (var mainDish in item.Menu.MainDishes)
+            {
+                <div>
+                    @Html.DisplayFor(x => mainDish.Name)
+                </div>
+            }
+        </td>
+        <td>
+            @foreach (var desert in item.Menu.Deserts)
+            {
+                <div>
+                    @Html.DisplayFor(x => desert.Name)
+                </div>
+            }
+        </td>
+        <td>
+            @foreach (var drink in item.Menu.Drinks)
+            {
+                <div>
+                    @Html.DisplayFor(x => drink.Name)
+                </div>
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price) &euro;
+        </td>
+        @*<td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
+        </td>*@
     </tr>
 }
 

@@ -18,6 +18,7 @@ namespace lunch
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             DocumentDBRepository<Models.Restaurant>.Initialize();
+            DocumentDBRepository<Models.Lunch>.Initialize();
         }
     }
 }
